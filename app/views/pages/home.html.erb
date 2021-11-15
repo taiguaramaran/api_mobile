@@ -1,12 +1,26 @@
-<h2> Desafio Lógica de programação </h2>
+<div class="container pb-5 bg-light text-dark">
+<h1> Desafio Mobile2You </h1>
+</div>
+<div class="container bg-light text-dark">
+<h2 class ='pb-3'> Desafio Lógica de Programação </h2>
+<h5>Dado um conjunto de caracteres, você precisará extrair os "diamantes" ( <>) e as "areias" ( . ) da expressão e no
+final exibir a quantidade de diamantes extraídos <br><br>
+Expressão: <<.<<..>><>><.>.>.<<.>.<.>>>><>><>></h5><br>
 
-<h3> Foram extraídos <%= @diamante%> diamantes </h3><br>
+<h5> Resposta: </h5>
+<p> Foram extraídos <strong><%= @diamante%></strong> diamantes levando em consideração os diamantes formados após a extração das areias e os gerados após a extração de cada diamante</p>
 
+</div>
 
-<h2>Importar arquivo CSV</h2>
+<div class="container py-5 bg-light text-dark">
+<h2>Desafio API</h2><br>
+<h5>Criar um endpoint que faça a leitura de um arquivo .csv, popule o banco de dados com essas informações e com
+isso será necessário exibir todos os registros em json. </h5><br>
+<h6> Importar Arquivo </h6>
 
   <%= form_tag import_titles_path, multipart: true do %>
-    <%= file_field_tag :file%>
-    <%= submit_tag "Importar"%>
+    <%= file_field_tag :file,class:"btn btn-light"%>
+    <%= submit_tag "Importar", class:"btn btn-dark"%>
   <%end%>
+  <br><p> Endpoint para listagem = http://localhost:3000/api/v1/titles </p>
 </div>

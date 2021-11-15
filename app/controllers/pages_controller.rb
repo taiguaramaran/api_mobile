@@ -15,13 +15,13 @@ class PagesController < ApplicationController
           @array.delete('.')
 
             if (@array[@cont] == "<") && (@array[@cont + 1] == ">")
-            @diamante = @diamante + 1
+              @diamante = @diamante + 1
               @array.delete_at(@cont)
               @array.delete_at(@cont)
               @cont = 0
             else
               @cont = @cont + 1
-          end
+            end
 
 
         end
