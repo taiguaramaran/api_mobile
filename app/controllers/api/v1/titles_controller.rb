@@ -1,7 +1,10 @@
 class Api::V1::TitlesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
+
     render json: Title.select(:show_id, :title, :show_type, :release_year, :country,
-                              :date_added, :description).distinct.where.not(title: ['title']).order('release_year asc')
+                              :date_added, :description).where(request.query_parameters).order('release_year asc')
+
   end
 
   def create
@@ -9,6 +12,7 @@ class Api::V1::TitlesController < ApplicationController
     if title.save
       render json: title, status: :created
     else
+      puts " XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
       render json: title.errors, status: :unprocessable_entity
     end
   end
@@ -24,8 +28,9 @@ class Api::V1::TitlesController < ApplicationController
   end
 
   def import
-    Title.import(params[:file])
-    redirect_to root_url, notice: 'Dados importados'
+    ::TitlesImporter.call!(params[:file])
+    #redirect_to titles_path, notice: 'Dados importados'
+    render json: Title.all
   end
 
   private

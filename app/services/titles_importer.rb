@@ -7,7 +7,9 @@ class TitlesImporter
   def run!
     CSV.foreach(@file.path, headers: ['show_id', 'show_type', 'title','director','cast','country','date_added',
                                       'release_year','rating','duration','listed_in','description']) do |row|
-      Title.create! row.to_hash
+      if row['show_id'] != 'show_id'
+        Title.where(show_id: row['show_id']).first_or_create(row.to_hash)
+      end
     end
   end
 

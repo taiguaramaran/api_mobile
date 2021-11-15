@@ -1,6 +1,7 @@
 class TitlesController < ApplicationController
+
   def index
-    @titles = Title.all
+    @titles = Title.order('release_year asc').all
   end
 
   def create
@@ -34,10 +35,6 @@ class TitlesController < ApplicationController
     @title = Title.find(params[:id])
   end
 
-  def import
-    ::TitlesImporter.call!(params[:file])
-    redirect_to titles_path, notice: 'Dados importados'
-  end
 
   private
 

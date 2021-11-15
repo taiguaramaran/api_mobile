@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <%@titles.order("release_year asc").select(:show_id, :show_type, :title, :director, :cast, :country, :date_added, :release_year, :rating, :duration, :listed_in, :description).distinct.where.not(title: ['title']).each do |title| %>
+      <%@titles.each do |title| %>
 
 
         <tr>
