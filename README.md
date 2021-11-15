@@ -89,16 +89,18 @@ Este projeto cria um endpoint que faz leitura de um arquivo .csv, popula o banco
 
   {"status":"SUCCESS","message":"Deleted","data":{"id":5,"show_id":"s69","genre":"Movie","title":"14 Blades","director":"Daniel Lee","cast":"Donnie Yen, Zhao Wei, Wu Chun, Law Kar-Ying, Kate Tsui, Yuwu Qi, Wu Ma, Chen Kuan Tai, Sammo Kam-Bo Hung, Chen Zhi Hui, Damian Lau, Xiang Dong Xu","country":"Hong Kong, China, Singapore","date_added":"2019-04-03","published_at":2010,"rating":0.0,"duration":"113 min","listed_in":"Action \u0026 Adventure, International Movies","description":"In the age of the Ming Dynasty, Quinglong is the best of the Jinyiwei, an elite assassin squad made up of highly trained former street urchins. When evil eunuch Jia unseats the emperor, Quinglong is called to action but is quickly betrayed.","created_at":"2021-11-15T18:15:25.894Z","updated_at":"2021-11-15T18:15:25.894Z"}
 
-## Importing a csv
 
-`POST titles/import`
+## Import a CSV
+
+### Request
+
+`GET titles/import`
 
   curl -i -H --location --request POST 'localhost:3000/api/v1/titles/import' \
   --header 'X-CSRF-TOKEN: V/cofXvPcIGzmeJM5rnBOe/MoxJTa53cMWvs5o538SmLpK9PvTMxAWg04P5odsKpBdOBmcaOqhistRtONe6Ung==' \
   --header 'Cookie: _api_mobile_session=FoN5AH8eNGmpk83d6UMVnqQhywLpFRf8F4TI2J28VhPZYA%2F1oO1F%2B%2FVaup4BPg8YLFNav7PNvRpzX5wWRjmnUvLQmBqxxem5wCooze35A%2BKDBisZHHq7DDcTI5Iiz9ZNCRp1bg4W4YKUOFJK%2FJ9WnXfxpxjannLWaRGuYvipX9C%2ByvWLk8SAQxapi6eeAzZydIv3Q5Nk9oRnuk6MHe4ZbY7k5%2BXz3C4WctaqIIFxKvQpcD02hG%2BoVNfq9%2B%2B6EiZ5xhf9b8MwGgi56nv%2BeNIO12PoXKjgTT0%2BkNPx6RAyYhn%2B9LHEAdNU4k%2FSdE%2F8BPe4G9zream5HW9bXrEv012eAsqAqwYZPhFSmnZcQa3QvZEpTkZr0Yxw7cVEGVVR57n0S31ghqA7i11mCdxxB24b--bviT6Ei%2FabRoxmt8--4j242Z2wC6OdRPh%2BQ7cJDQ%3D%3D' \
   --form 'file=@"lib/seeds/netflix_titles.csv"'
 
-
 ### Response
 
-  {"status":"SUCCESS","message":"Imported"}
+    {"status":"SUCCESS","message":"Imported"}
