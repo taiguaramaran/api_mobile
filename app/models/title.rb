@@ -1,3 +1,2 @@
 class Title < ApplicationRecord
-
 end

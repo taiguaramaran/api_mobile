@@ -1,41 +1,61 @@
 class Api::V1::TitlesController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index
-
-    render json: Title.select(:show_id, :title, :show_type, :release_year, :country,
-                              :date_added, :description).where(request.query_parameters).order('release_year asc')
-
+    render json: Title.select(:id, :title, :genre, :published_at, :country,
+                              :date_added, :description).where(request.query_parameters).order('published_at asc')
   end
 
   def create
     title = Title.new(title_params)
     if title.save
-      render json: title, status: :created
+      render json: { status: 'SUCCESS', message: 'Created', data: title }, status: :ok
     else
-      puts " XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-      render json: title.errors, status: :unprocessable_entity
+      render json: { status: 'ERROR', message: 'Not Created' }, status: :unprocessable_entity
+    end
+  end
+
+  def show
+    title = Title.find_by_id(params[:id])
+    if !title.nil?
+      render json: { status: 'SUCCESS', message: 'Showed', data: title }, status: :ok
+    else
+      render json: { status: 'ERROR', message: 'Not Showed' }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    Title.find(params[:id]).destroy!
-    head :no_content
+    title = Title.find_by_id(params[:id])
+    if !title.nil?
+      Title.find(params[:id]).destroy!
+      render json: { status: 'SUCCESS', message: 'Deleted', data: title }, status: :ok
+    else
+      render json: { status: 'ERROR', message: 'Not Deleted' }, status: :unprocessable_entity
+    end
   end
 
   def update
-    Title.find(params[:id]).update_attributes(title_params)
-    head :no_content
+    title = Title.find(params[:id])
+	  if title.update_attributes(title_params)
+			render json: { status: 'SUCCESS', message: 'Updated', data: title },status: :ok
+		else
+			render json: { status: 'ERROR', message: 'Not update' }, status: :unprocessable_entity
+		end
   end
 
   def import
-    ::TitlesImporter.call!(params[:file])
-    #redirect_to titles_path, notice: 'Dados importados'
-    render json: Title.all
+    if !params[:file].nil?
+      ::TitlesImporter.call!(params[:file])
+      render json: { status: 'SUCCESS', message: 'Imported' }, status: :ok
+      # render json: Title.select(:id, :title, :genre, :published_at, :country,
+                              #:date_added, :description).order('release_year asc')
+    else
+      render json: { status: 'ERROR', message: 'Not imported' }, status: :unprocessable_entity
+    end
   end
 
   private
 
   def title_params
-    params.require(:title).permit(:show_id, :title, :show_type, :release_year, :country, :listed_in, :description)
+    params.permit(:show_id, :title, :genre, :published_at, :country, :listed_in, :description)
   end
 end

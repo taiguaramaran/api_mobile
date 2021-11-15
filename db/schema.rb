@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_215147) do
+ActiveRecord::Schema.define(version: 2021_11_15_171017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "titles", force: :cascade do |t|
     t.string "show_id"
-    t.string "show_type"
+    t.string "genre"
     t.string "title"
     t.string "director"
     t.string "cast"
     t.string "country"
     t.date "date_added"
-    t.integer "release_year"
+    t.integer "published_at"
     t.float "rating"
     t.string "duration"
     t.string "listed_in"
