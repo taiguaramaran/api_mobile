@@ -5,13 +5,11 @@ class TitlesController < ApplicationController
 
   def create
     @title = Title.new(title_params)
-
     if @title.save
       redirect_to :index
     else
       render :new, errors: @title.errors
     end
-
   end
 
   def destroy
@@ -21,7 +19,6 @@ class TitlesController < ApplicationController
     else
       redirect_to :index, errors: @title.errors
     end
-
   end
 
   def update
@@ -31,17 +28,15 @@ class TitlesController < ApplicationController
     else
       redirect_to :edit, errors: @title.errors
     end
-
   end
 
   def edit
     @title = Title.find(params[:id])
-
   end
 
   def import
     ::TitlesImporter.call!(params[:file])
-    redirect_to titles_path, notice: "Dados importados"
+    redirect_to titles_path, notice: 'Dados importados'
   end
 
   private
@@ -49,5 +44,4 @@ class TitlesController < ApplicationController
   def title_params
     params.require(:title).permit(:show_id, :title, :show_type, :release_year, :country, :listed_in, :description)
   end
-
 end
