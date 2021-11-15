@@ -1,6 +1,6 @@
 class Api::V1::TitlesController < ApplicationController
   def index
-    render json: Title.select(:show_id, :title, :show_type, :release_year, :country, :date_added, :description).order("release_year desc")
+    render json: Title.select(:show_id, :title, :show_type, :release_year, :country, :date_added, :description).distinct.where.not(title: ['title']).order("release_year asc")
   end
 
   def create

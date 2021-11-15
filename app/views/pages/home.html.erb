@@ -1,26 +1,12 @@
-<div>
-<h2>Importar</h2>
+<h2> Desafio Lógica de programação </h2>
+
+<h3> Foram extraídos <%= @diamante%> diamantes </h3><br>
+
+
+<h2>Importar arquivo CSV</h2>
+
   <%= form_tag import_titles_path, multipart: true do %>
     <%= file_field_tag :file%>
     <%= submit_tag "Importar"%>
   <%end%>
 </div>
-
-    <% @titles.order("release_year desc").each do |title| %>
-      <br>
-       [
-         <br>
-          {
-            <br>
-        <tr>"show_id": <%=title.show_id%></tr><br>
-        <tr>"title": <%=title.title%></tr><br>
-        <tr>"genre": <%=title.show_type%></tr><br>
-        <tr>"year": <%=title.release_year%></tr><br>
-        <tr>"country": <%=title.country%></tr><br>
-        <tr>"published_at": <%=title.date_added%></tr><br>
-        <tr>"description": <%=title.description%></tr><br>
-          }
-          <br>
-            ]
-      <br>
-    <%end%>
