@@ -6,6 +6,7 @@ Projeto desenvolvido para o teste da empresa Mobile2You
 ## Instalação
 
     bundle install
+    rails db:create
     rails db:migrate
 
 ## Run the app
@@ -100,6 +101,7 @@ Este projeto cria um endpoint que faz leitura de um arquivo .csv, popula o banco
   --header 'X-CSRF-TOKEN: V/cofXvPcIGzmeJM5rnBOe/MoxJTa53cMWvs5o538SmLpK9PvTMxAWg04P5odsKpBdOBmcaOqhistRtONe6Ung==' \
   --header 'Cookie: _api_mobile_session=FoN5AH8eNGmpk83d6UMVnqQhywLpFRf8F4TI2J28VhPZYA%2F1oO1F%2B%2FVaup4BPg8YLFNav7PNvRpzX5wWRjmnUvLQmBqxxem5wCooze35A%2BKDBisZHHq7DDcTI5Iiz9ZNCRp1bg4W4YKUOFJK%2FJ9WnXfxpxjannLWaRGuYvipX9C%2ByvWLk8SAQxapi6eeAzZydIv3Q5Nk9oRnuk6MHe4ZbY7k5%2BXz3C4WctaqIIFxKvQpcD02hG%2BoVNfq9%2B%2B6EiZ5xhf9b8MwGgi56nv%2BeNIO12PoXKjgTT0%2BkNPx6RAyYhn%2B9LHEAdNU4k%2FSdE%2F8BPe4G9zream5HW9bXrEv012eAsqAqwYZPhFSmnZcQa3QvZEpTkZr0Yxw7cVEGVVR57n0S31ghqA7i11mCdxxB24b--bviT6Ei%2FabRoxmt8--4j242Z2wC6OdRPh%2BQ7cJDQ%3D%3D' \
   --form 'file=@"lib/seeds/netflix_titles.csv"'
+
 
 ### Response
 
