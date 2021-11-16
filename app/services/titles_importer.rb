@@ -1,6 +1,5 @@
 class TitlesImporter
   require 'csv'
-
   def self.call!(file)
     new(file).run!
   end
