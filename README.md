@@ -6,6 +6,7 @@ Projeto desenvolvido para o teste da empresa Mobile2You
 ## Instalação
 
     bundle install
+    rails db:create
     rails db:migrate
 
 ## Run the app
