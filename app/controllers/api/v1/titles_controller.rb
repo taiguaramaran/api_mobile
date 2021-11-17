@@ -5,6 +5,19 @@ class Api::V1::TitlesController < ApplicationController
                               :date_added, :description).where(request.query_parameters).order('published_at asc')
   end
 
+  def index_blocked
+    render json: Title.select(:id, :title, :genre, :published_at, :country,
+                              :date_added, :description).where(title: 'A Clockwork Orange')
+  end
+
+
+  def title_name
+    nome = params[:title]
+    render json: { data: nome }
+  end
+
+
+
   def create
     title = Title.new(title_params)
     if title.save
@@ -22,6 +35,8 @@ class Api::V1::TitlesController < ApplicationController
       render json: { status: 'ERROR', message: 'Not Showed' }, status: :unprocessable_entity
     end
   end
+
+
 
   def destroy
     title = Title.find_by_id(params[:id])
